@@ -35,29 +35,38 @@ document.querySelectorAll('[data-service]').forEach(btn => {
   });
 });
 
-// Contact form -> opens the user's mail client with a prefilled message
-// (this is a static site with no backend; wire this to a real form
-// endpoint such as Formspree or a server route before going live)
+// Contact form -> submitted to Netlify Forms in the background (no page reload).
+// Netlify collects the submission, emails HeizungsTreuhand automatically, and
+// this script then shows an on-page confirmation to the customer. Only works
+// once the site is deployed on Netlify — a plain "npm start"/local preview
+// won't have a Netlify server behind it to receive the POST.
 const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('formSubmitBtn');
+const formNote = document.getElementById('formNote');
+
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const name = data.get('name') || '';
-    const email = data.get('email') || '';
-    const phone = data.get('phone') || '';
-    const service = data.get('service') || '';
-    const message = data.get('message') || '';
 
-    const subject = `Anfrage über heizungstreuhand.ch — ${service}`;
-    const body =
-      `Name: ${name}\n` +
-      `E-Mail: ${email}\n` +
-      `Telefon: ${phone}\n` +
-      `Interessiert an: ${service}\n\n` +
-      `Nachricht:\n${message}`;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet…';
 
-    window.location.href =
-      `mailto:amstalden@heizungstreuhand.ch?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString(),
+    })
+      .then(() => {
+        form.hidden = true;
+        formSuccess.hidden = false;
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Anfrage senden';
+        formNote.textContent =
+          'Das hat leider nicht geklappt. Bitte rufen Sie uns an (052 551 00 23) oder schreiben Sie direkt an amstalden@heizungstreuhand.ch.';
+      });
   });
 }

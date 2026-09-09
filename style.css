@@ -590,6 +590,32 @@ ul{ margin: 0; padding: 0; list-style: none; }
   padding: 36px;
 }
 
+.form-honeypot{
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form-success{
+  text-align: center;
+}
+
+.contact-form-success h3{
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 12px;
+}
+
+.contact-form-success p{
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin: 0;
+}
+
 .form-row{ margin-bottom: 20px; }
 
 .form-row-split{

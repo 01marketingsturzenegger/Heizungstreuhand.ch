@@ -329,7 +329,11 @@
           <p class="contact-hint">Wir melden uns in der Regel innerhalb eines Werktages.</p>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" name="kontakt" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="kontakt">
+          <p class="form-honeypot" aria-hidden="true">
+            <label>Bitte nicht ausfüllen: <input name="bot-field"></label>
+          </p>
           <div class="form-row">
             <label for="f-name">Name</label>
             <input type="text" id="f-name" name="name" required placeholder="Ihr Name">
@@ -357,9 +361,13 @@
             <label for="f-message">Nachricht</label>
             <textarea id="f-message" name="message" rows="4" placeholder="Kurz zu Ihrem Gebäude und Ihrem Anliegen…"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Anfrage senden</button>
-          <p class="form-note" id="formNote">Öffnet Ihr E-Mail-Programm mit vorausgefüllter Nachricht an HeizungsTreuhand.</p>
+          <button type="submit" class="btn btn-primary btn-block" id="formSubmitBtn">Anfrage senden</button>
+          <p class="form-note" id="formNote">Wir melden uns so rasch wie möglich bei Ihnen.</p>
         </form>
+        <div class="contact-form contact-form-success" id="formSuccess" hidden>
+          <h3>Danke für Ihre Anfrage!</h3>
+          <p>Wir haben Ihre Nachricht erhalten und melden uns so rasch wie möglich bei Ihnen — in der Regel innerhalb eines Werktages.</p>
+        </div>
       </div>
     </div>
   </section>
