@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Claude Code local tooling (dev-server config, not part of the website)
+.claude/
+
+# Raw video source & editing project (large files, not needed on the live site)
+Video/
+
+# Internal planning document (not part of the public website)
+Website Aufbau heizungstreuhand.docx
