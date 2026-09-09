@@ -66,7 +66,7 @@ if (form) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Anfrage senden';
         formNote.textContent =
-          'Das hat leider nicht geklappt. Bitte rufen Sie uns an (052 551 00 23) oder schreiben Sie direkt an amstalden@heizungstreuhand.ch.';
+          'Das hat leider nicht geklappt. Bitte rufen Sie uns an (052 551 00 23) oder schreiben Sie direkt an info@heizungstreuhand.ch.';
       });
   });
 }
