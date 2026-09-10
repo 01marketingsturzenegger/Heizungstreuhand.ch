@@ -131,6 +131,8 @@ ul{ margin: 0; padding: 0; list-style: none; }
 
 .nav-logo-img{ height: 32px; width: auto; }
 
+.nav-mobile-panel{ display: contents; }
+
 .nav-links{
   display: flex;
   gap: 32px;
@@ -774,6 +776,7 @@ ul{ margin: 0; padding: 0; list-style: none; }
   .hero-headline{ font-size: clamp(32px, 9vw, 40px); }
   .hero-rule{ margin: 22px 0; }
   .hero-actions{ gap: 18px; }
+  .hero-actions .link-arrow{ margin-left: 30px; }
   .feature-grid{ grid-template-columns: 1fr; }
   .process-strip{ grid-template-columns: 1fr; }
   .form-row-split{ grid-template-columns: 1fr; }
@@ -783,8 +786,9 @@ ul{ margin: 0; padding: 0; list-style: none; }
   .footer-bottom{ flex-direction: column; }
 }
 
-/* Mobile nav open state */
-.nav-links.is-open{
+/* Mobile nav open state — links and actions stack naturally inside one panel,
+   so there's no fixed offset to keep in sync when either section's height changes. */
+.nav-mobile-panel.is-open{
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -793,18 +797,18 @@ ul{ margin: 0; padding: 0; list-style: none; }
   background: #fff;
   padding: 20px 32px;
   border-bottom: 1px solid var(--color-border);
+  gap: 20px;
+}
+
+.nav-mobile-panel.is-open .nav-links{
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
-.nav-actions.is-open{
+.nav-mobile-panel.is-open .nav-actions{
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  position: absolute;
-  top: 100%;
-  left: 0; right: 0;
-  margin-top: 168px;
-  background: #fff;
-  padding: 0 32px 20px;
   gap: 12px;
 }

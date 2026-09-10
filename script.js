@@ -10,19 +10,16 @@ window.addEventListener('scroll', onScroll, { passive: true });
 
 // Mobile menu toggle
 const burger = document.getElementById('navBurger');
-const navLinks = document.getElementById('navLinks');
-const navActions = document.querySelector('.nav-actions');
+const navMobilePanel = document.getElementById('navMobilePanel');
 
 burger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('is-open');
-  navActions.classList.toggle('is-open', open);
+  const open = navMobilePanel.classList.toggle('is-open');
   burger.setAttribute('aria-expanded', String(open));
 });
 
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('is-open');
-    navActions.classList.remove('is-open');
+    navMobilePanel.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
   });
 });
