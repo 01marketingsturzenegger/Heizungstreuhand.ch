@@ -50,20 +50,26 @@ if (form) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Wird gesendet…';
 
+    const showError = () => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Anfrage senden';
+      formNote.textContent =
+        'Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt: Telefon 052 551 00 23 oder info@heizungstreuhand.ch.';
+    };
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(data).toString(),
     })
-      .then(() => {
-        form.hidden = true;
-        formSuccess.hidden = false;
+      .then((response) => {
+        if (response.ok) {
+          form.hidden = true;
+          formSuccess.hidden = false;
+        } else {
+          showError();
+        }
       })
-      .catch(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Anfrage senden';
-        formNote.textContent =
-          'Das hat leider nicht geklappt. Bitte rufen Sie uns an (052 551 00 23) oder schreiben Sie direkt an info@heizungstreuhand.ch.';
-      });
+      .catch(showError);
   });
 }

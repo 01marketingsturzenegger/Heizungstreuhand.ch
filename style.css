@@ -5,12 +5,24 @@
    palette (navy / gold) from the logo, flyer and business card.
    ========================================================================== */
 
+/* Self-hosted Inter (variable font, Latin subset — covers all German text
+   incl. äöüß). One file serves weights 400–800, so a single @font-face rule
+   with a weight range is enough; no external Google Fonts request is made. */
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('assets/fonts/Inter-latin-variable.woff2') format('woff2-variations'), url('assets/fonts/Inter-latin-variable.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root{
   /* Brand colors */
   --color-navy:        #161d34;
   --color-navy-deep:   #001835;
   --color-navy-soft:   #2c3c5c;
-  --color-gold:        #d19849;
+  --color-gold:        #d3af37;
   --color-gold-light:  #d7ac66;
 
   --color-canvas:      #f4f2ec;
@@ -666,6 +678,79 @@ ul{ margin: 0; padding: 0; list-style: none; }
   margin: 14px 0 0;
 }
 
+.form-privacy-note{
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-muted-light);
+  margin: 0 0 16px;
+}
+
+.form-privacy-note a{
+  color: var(--color-muted);
+  text-decoration: underline;
+}
+
+.form-privacy-note a:hover{ color: var(--color-navy); }
+
+/* ==========================================================================
+   Legal pages (Impressum / Datenschutz)
+   ========================================================================== */
+
+.legal-page{ padding-top: 76px; }
+
+.legal-content{ max-width: 760px; }
+
+.legal-content .heading{ max-width: none; }
+
+.legal-body{
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border);
+}
+
+.legal-body section + section{ margin-top: 40px; }
+
+.legal-body h2{
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 14px;
+}
+
+.legal-body p{
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-muted);
+  margin: 0 0 14px;
+}
+
+.legal-body p:last-child{ margin-bottom: 0; }
+
+.legal-list{
+  margin: 0 0 14px;
+  padding-left: 20px;
+  list-style: disc;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.legal-list li{ margin-bottom: 4px; }
+
+.legal-body address{
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.legal-body a{
+  color: var(--color-navy);
+  text-decoration: underline;
+}
+
+.legal-body a:hover{ color: var(--color-gold); }
+
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -746,6 +831,13 @@ ul{ margin: 0; padding: 0; list-style: none; }
   font-size: 13px;
   color: rgba(255,255,255,0.45);
 }
+
+.footer-bottom a{
+  color: inherit;
+  text-decoration: underline;
+}
+
+.footer-bottom a:hover{ color: rgba(255,255,255,0.8); }
 
 /* ==========================================================================
    Responsive
